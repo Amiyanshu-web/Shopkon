@@ -1,0 +1,43 @@
+main {
+    min-height: 80vh;
+}
+
+.rating span {
+    margin: 0.1rem;
+
+}
+
+a {
+    text-decoration: none !important;
+}
+
+h3 {
+    padding: 1rem 0;
+}
+
+h1 {
+    font-size: 1.8rem;
+    padding: 1rem 0;
+}
+
+h2 {
+    font-size: 1.4rem;
+    padding: 0.5 0rem;
+}
+
+.pdt {
+    width: 100%;
+}
+
+.sign {
+    /* width: 25%; */
+    margin-left: 37%;
+    margin-right: 37%;
+}
+
+.google {
+    width: 50%;
+    margin-left: 25%;
+    margin-right: 25%;
+    align-items: center;
+}

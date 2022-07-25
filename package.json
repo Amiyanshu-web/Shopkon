@@ -27,10 +27,18 @@
     "bcryptjs": "^2.4.3",
     "colors": "^1.4.0",
     "concurrently": "^7.0.0",
+    "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.2",
     "express-async-handler": "^1.2.0",
+    "express-mongo-sanitize": "^2.2.0",
+    "google-auth-library": "^7.11.0",
+    "helmet": "^5.0.1",
+    "hpp": "^0.2.3",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.1.4",
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "react-paypal-button-v2": "^2.6.3",
+    "xss-clean": "^0.1.1"
   }
 }
