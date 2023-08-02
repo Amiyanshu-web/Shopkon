@@ -70,7 +70,7 @@ const Loginscreen = () => {
             <Form.Control type='password' placeholder='Enter password' value={password} onChange={(e)=>setPassword(e.target.value)}></Form.Control>
             </Form.Group>
             <Button type='submit' className='primary my-2 sign'>Sign In</Button>
-            <span className='m-50vw'>OR</span>
+            {/* <span className='m-50vw'>OR</span> */}
             {/* <GoogleLogin
             clientId="287391644614-kc8nbmutmfq5kh30u010v58s86j1h46u.apps.googleusercontent.com"
             render={(renderProps) => (
@@ -82,14 +82,14 @@ const Loginscreen = () => {
             onFailure={googleError}
             cookiePolicy="single_host_origin"
           /> */}
-          <GoogleLogin
+          {/* <GoogleLogin
           className='primary my-2 google '
     clientId="287391644614-kc8nbmutmfq5kh30u010v58s86j1h46u.apps.googleusercontent.com"
     buttonText="Login with Google"
     onSuccess={googleSuccess}
     onFailure={googleError}
     cookiePolicy={'single_host_origin'}
-  />
+  /> */}
         </Form>
         <Row className='py-3'> 
             <Col>
