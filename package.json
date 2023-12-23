@@ -38,7 +38,6 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.1.4",
     "nodemon": "^2.0.15",
-    "react-paypal-button-v2": "^2.6.3",
     "xss-clean": "^0.1.1"
   }
 }
