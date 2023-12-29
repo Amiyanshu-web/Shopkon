@@ -1,0 +1,109 @@
+
+.cardd {
+    position: relative;
+    width: 340px;
+    height: 480px;
+    /* background: #191919; */
+    border-radius: 20px;
+    overflow: hidden;
+    margin-left: 10px;
+}
+
+.cardd::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    width: 100%;
+    height: 100%;
+    background: #6CC3D5;
+    transform: skewY(345deg);
+    transition: 0.5s;
+}
+
+.cardd:hover::before {
+    top: -70%;
+    transform: skewY(390deg);
+}
+
+.cardd::after {
+    /* content: "CAMS"; */
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    font-weight: 600;
+    font-size: 6em;
+    color: rgba(0, 0, 0, 0.1);
+}
+
+.cardd .imgBox {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+    z-index: 1;
+}
+
+/*
+.card .imgBox img {
+    max-width: 100%;
+    
+    transition: .5s;
+}
+
+.card:hover .imgBox img {
+    max-width: 50%;
+      
+}
+*/
+.cardd .contentBox {
+    position: relative;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 2;
+}
+
+.cardd .contentBox h3 {
+    font-size: 18px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.cardd .contentBox .price {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.cardd .contentBox .buy {
+    position: relative;
+    top: 100px;
+    opacity: 0;
+    padding: 10px 30px;
+    margin-top: 15px;
+    color: #000000;
+    text-decoration: none;
+    background: #6CC3D5;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: 0.5s;
+    border: none;
+    font-weight: 500;
+    border-radius: 7px;
+}
+
+.cardd:hover .contentBox .buy {
+    top: -10px;
+    opacity: 1;
+}
+
+.product {
+    height: 200px;
+    max-width: 300px;
+    width: auto ;
+}

@@ -7,7 +7,7 @@ export const login = (email,password) => async(dispatch)=>{
                 'Content-Type':'application/json'
         }
     }
-        const {data}=await axios.post('/api/users/login',{email,password},config);
+        const { data } = await axios.post(`${process.env.REACT_APP_PROXY}/api/users/login`,{email,password},config);
         dispatch({type:'USER_LOGIN_SUCCESS',payload:data});
         localStorage.setItem('userInfo',JSON.stringify(data));
     }catch(error){
@@ -24,7 +24,7 @@ export const googleLogin = (tokenId,email,name,email_verified) => async(dispatch
                 'Content-Type':'application/json'
         }
     }
-        const {data}=await axios.post('/api/users/googlelogin',{tokenId},config);
+        const { data } = await axios.post(`${process.env.REACT_APP_PROXY}/api/users/googlelogin`,{tokenId},config);
         dispatch({type:'GOOGLE_LOGIN_SUCCESS',payload:data});
         localStorage.setItem('userInfo',JSON.stringify(data));
     }catch(error){
@@ -47,7 +47,7 @@ export const register = (name,email,password) => async(dispatch)=>{
                 'Content-Type':'application/json'
         }
     }
-        const {data}=await axios.post('/api/users',{name,email,password},config);
+        const { data } = await axios.post(`${process.env.REACT_APP_PROXY}/api/users`,{name,email,password},config);
         dispatch({type:'USER_REGISTER_SUCCESS',payload:data});
         dispatch({type:'USER_LOGIN_SUCCESS',payload:data});
         localStorage.setItem('userInfo',JSON.stringify(data));
@@ -68,7 +68,7 @@ export const getUserDetails = (id) => async(dispatch,getState)=>{
                 'Authorization':`Bearer ${userInfo.token}`
         }
     }
-        const {data}=await axios.get(`/api/users/${id}`,config);
+        const { data } = await axios.get(`${process.env.REACT_APP_PROXY}/api/users/${id}`,config);
         dispatch({type:'USER_DETAILS_SUCCESS',payload:data});
        
 
@@ -88,7 +88,7 @@ export const UserUpdateDetails = (user) => async(dispatch,getState)=>{
                 'Authorization':`Bearer ${userInfo.token}`
         }
     }
-        const {data}=await axios.put(`/api/users/profile`,user,config);
+        const { data } = await axios.put(`${process.env.REACT_APP_PROXY}/api/users/profile`,user,config);
         dispatch({type:'USER_UPDATE_SUCCESS',payload:data});
         localStorage.setItem('userInfo',JSON.stringify(data));
 

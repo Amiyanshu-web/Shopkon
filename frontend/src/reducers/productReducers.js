@@ -1,4 +1,4 @@
-export const productListReducer = (state = {products:[]}, action) => {
+export const productListReducer = (state = {products:[],}, action) => {
     switch (action.type) {
         case 'PRODUCT_LIST_REQUEST':
             return {
@@ -6,7 +6,7 @@ export const productListReducer = (state = {products:[]}, action) => {
             }
             case 'PRODUCT_LIST_SUCCESS':
             return {
-                loading: false,products:action.payload
+                loading: false,products:action.payload.products,page:action.payload.page,pages:action.payload.pages
             }
             case 'PRODUCT_LIST_FAIL':
             return {

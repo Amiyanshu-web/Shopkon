@@ -10,7 +10,7 @@ export const createOrder = (order) => async (dispatch, getState) => {
                 'Authorization': `Bearer ${userInfo.token}`
             }
         }
-        const { data } = await axios.post(`/api/orders`, order, config);
+        const { data } = await axios.post(`${process.env.REACT_APP_PROXY}/api/orders`, order, config);
         dispatch({ type: 'ORDER_CREATE_SUCCESS', payload: data });
 
     } catch (error) {
@@ -28,7 +28,7 @@ export const getOrderDetails = (id) => async (dispatch, getState) => {
                 'Authorization': `Bearer ${userInfo.token}`
             }
         }
-        const { data } = await axios.get(`/api/orders/${id}`, config);
+        const { data } = await axios.get(`${process.env.REACT_APP_PROXY}/api/orders/${id}`, config);
         dispatch({ type: 'ORDER_DETAILS_SUCCESS', payload: data });
 
     } catch (error) {
@@ -48,7 +48,7 @@ export const payOrder = (id, paymentResult) => async (dispatch, getState) => {
                 'Authorization': `Bearer ${userInfo.token}`
             }
         }
-        const { data } = await axios.put(`/api/orders/${id}/pay`, paymentResult, config);
+        const { data } = await axios.put(`${process.env.REACT_APP_PROXY}/api/orders/${id}/pay`, paymentResult, config);
         dispatch({ type: 'ORDER_PAY_SUCCESS', payload: data });
 
     } catch (error) {
@@ -66,7 +66,7 @@ export const listmyorders = () => async (dispatch, getState) => {
                 Authorization: `Bearer ${userInfo.token}`
             }
         }
-        const { data } = await axios.get(`/api/orders/myorders`, config);
+        const { data } = await axios.get(`${process.env.REACT_APP_PROXY}/api/orders/myorders`, config);
         dispatch({ type: 'ORDER_LIST_MY_SUCCESS', payload: data });
 
     } catch (error) {

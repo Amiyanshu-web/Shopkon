@@ -17,7 +17,7 @@ const Productscreen = () => {
     const [product,setProduct]=React.useState({});
     const[loading,setLoading]=React.useState(true);
     React.useEffect(()=>{
-        axios.get(`/api/products/${id}`)
+        axios.get(`${process.env.REACT_APP_PROXY}/api/products/${id}`)
         .then(res=>{
             setProduct(res.data.product)
             setLoading(false)
