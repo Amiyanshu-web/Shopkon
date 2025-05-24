@@ -10,9 +10,12 @@ import Registerscreen from './screens/Registerscreen';
 import Productscreen from './screens/Productscreen';
 import Profilescreen from './screens/Profilescreen';
 import Shippingscreen from './screens/Shippingscreen';
-import PaymentScreen from './screens/PaymentScreen';
+// import PaymentScreen from './screens/PaymentScreen';
 import PlaceOrder from './screens/PlaceOrder';
 import Order from './screens/Order';
+import PagenotFound from './screens/PagenotFound';
+import ProtectedRoute from './component/ProtectedRoute';
+
 function App() {
   return (
     <>
@@ -22,17 +25,21 @@ function App() {
       <main className='py-3'>
         <Container>
           <Routes>
+            <Route element={<ProtectedRoute />}>
+            <Route path='/profile' element={<Profilescreen />} />
+            <Route path='/shipping' element={<Shippingscreen />} />
+            {/* <Route path='/payment' element={<PaymentScreen />} /> */}
+            <Route path='/order/:id' element={<Order />} />
+            <Route path='/placeorder' element={<PlaceOrder />} />
+            </Route>
+
             <Route path='/login' element={<Loginscreen />} />
             <Route path='/register' element={<Registerscreen />} />
-            <Route path='/profile' element={<Profilescreen />} />
             <Route path='/product/:id' element={<Productscreen />} />
-            <Route path='/cart/:id' element={<Cartscreen />} />
+            {/* <Route path='/cart/:id' element={<Cartscreen />} /> */}
             <Route path='/cart' element={<Cartscreen />} />
-            <Route path='/login/shipping' element={<Shippingscreen />} />
-            <Route path='/payment' element={<PaymentScreen />} />
-            <Route path='/placeorder' element={<PlaceOrder />} />
-            <Route path='/order/:id' element={<Order />} />
             <Route path='/' element={<Homescreen />} exact />
+            <Route path='*' element={<PagenotFound />} />
           </Routes>
         </Container>
       </main>

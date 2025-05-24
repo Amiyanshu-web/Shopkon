@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Form,Button } from 'react-bootstrap';
 import FormContainer from '../component/FormContainer';
 import { useDispatch,useSelector } from 'react-redux';
-import { saveShippingAddress } from '../actions/cartActions';
+import { savePaymentMethod, saveShippingAddress } from '../actions/cartActions';
 import {CheckoutSteps} from '../component/CheckoutSteps';
 const Shippingscreen = () => {
   const history=useNavigate();
@@ -15,10 +15,14 @@ const Shippingscreen = () => {
     const [city,setCity]=useState(shippingAddress.city);
     const [postalCode,setPostalCode]=useState(shippingAddress.postalCode);
     const [country,setCountry]=useState(shippingAddress.country);
+
+    const [paymentMethod,setPaymentMethod]=useState('COD');
     const submitHandler=(e)=>{
       e.preventDefault();
+      dispatch(savePaymentMethod(paymentMethod));
       dispatch(saveShippingAddress({address,city,postalCode,country}));
-      history('/payment');
+      // history('/payment');
+      history('/placeorder');
       // console.log(address,city,postalCode,country);
     }
   return(

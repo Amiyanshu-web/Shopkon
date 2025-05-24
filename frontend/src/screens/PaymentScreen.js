@@ -11,7 +11,7 @@ const history=useNavigate();
      const cart = useSelector((state) => state.cart)
       const { shippingAddress } = cart;
      if(!shippingAddress){
-         history('/login/shipping');
+         history('/shipping');
      }
     const [paymentMethod,setPaymentMethod]=useState('Paypal');
     

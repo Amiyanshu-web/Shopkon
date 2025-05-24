@@ -8,26 +8,53 @@ import Rating from '../component/Rating'
 import { listProductDetails } from '../actions/productActions';
 import Loader from '../component/Loader';
 import Message from '../component/Message';
+import { addToCart } from '../actions/cartActions';
 const Productscreen = () => {
+    const dispatch=useDispatch();
     const history=useNavigate();
     const {id} = useParams();
     const [qty,setQty]=React.useState(1);
     const count=[1,2,3,4,5];
 
-    const [product,setProduct]=React.useState({});
-    const[loading,setLoading]=React.useState(true);
-    React.useEffect(()=>{
-        axios.get(`${process.env.REACT_APP_PROXY}/api/products/${id}`)
-        .then(res=>{
-            setProduct(res.data.product)
-            setLoading(false)
+    const {product,loading,error}=useSelector(state=>state.productDetails);
+    // product = product.product;
+    // const [product,setProduct]=React.useState();
+    // const[loading,setLoading]=React.useState(true);
+    // React.useEffect(()=>{
+    //     axios.get(`${process.env.REACT_APP_PROXY}/api/products/${id}`)
+    //     .then(res=>{
+    //         setProduct(res.data.product)
+    //         setLoading(false)
     
-        })
-        .catch(err=>console.log(err.response.data))
+    //     })
+    //     .catch(err=>console.log(err.response.data))
+    // },[id])
+
+    React.useEffect(()=>{
+        const fetchProduct = async(id)=>{
+            try{
+                dispatch(listProductDetails(id));
+                // setProduct(productDetail.product);
+                console.log(product);
+            }
+            catch(err){
+                console.log(err.response.data)
+            }
+        };
+
+        fetchProduct(id);
     },[id])
     
-    const cartHandler=()=>{
-        history(`/cart/${id}?qty=${qty}`)
+    const cartHandler=async()=>{
+        try{
+
+            dispatch(addToCart(id,qty));
+            // history(`/cart/${id}?qty=${qty}`)
+            history(`/cart`);
+        }
+        catch(err){
+            console.log("Something went wrong!");
+        }
     }
     return (
         

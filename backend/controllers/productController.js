@@ -45,3 +45,40 @@ export const getProductById=asyncHandler(async(req,res,next)=>{
         throw new Error('Product not found')
     }
 })
+
+export const createProductReview = asyncHandler(async (req,res)=>{
+    try{
+
+        const {rating, comment} = req.body;
+        
+        const productId = req.params.id;
+        
+        const product = await Product.findById(productId);
+        if(!product){
+            res.status(404)
+            throw new Error('Product not found')
+        }
+        product.reviews.push({
+            name : req.user.name,
+            rating: Number(rating),
+            comment,
+            user: req.user._id
+        })
+
+        product.numReviews = product.reviews.length;
+        product.rating = product.reviews.reduce((curr, item) => item.rating + curr, 0) / product.reviews.length;
+        await product.save();
+        res.status(201).json({
+            message: 'Review added',
+            review: {
+                name : req.user.name,
+                rating: Number(rating),
+                comment,
+                user: req.user._id
+            }
+        })
+    }
+    catch(error){
+        res.status(500).json({ message: 'Server Error' });
+    }
+})

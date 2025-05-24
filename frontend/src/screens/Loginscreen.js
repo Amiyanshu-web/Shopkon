@@ -19,7 +19,7 @@ const Loginscreen = () => {
 
     useEffect(()=>{
         if(userInfo){
-            history(redirect);
+            history(`${redirect}`);
         }
     },[userInfo,history,redirect])
     const submitHandler=(e)=>{

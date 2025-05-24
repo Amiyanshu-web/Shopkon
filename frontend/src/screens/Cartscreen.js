@@ -6,28 +6,29 @@ import { Row,Col,Image,ListGroup,Card,Button, Form } from 'react-bootstrap'
 import { addToCart, removeFromCart } from '../actions/cartActions';
 import Message from '../component/Message';
 const Cartscreen = () => {
-   const { id } = useParams();
+  //  const { id } = useParams();
 //   const { search } = useLocation();
 const history = useNavigate();
-const [searchParms] = useSearchParams();
-const qty = Number(searchParms.get("qty"));
-  const productId = id;
-  console.log({productId,qty});
+// const [searchParms] = useSearchParams();
+// const qty = Number(searchParms.get("qty"));
+  // const productId = id;
+  // console.log({productId,qty});
 //   const qty = search ? Number(search.split("=")[1]) : 1;
     const dispatch=useDispatch();
      const cart = useSelector((state) => state.cart)
   const { cartItems } = cart;
-    React.useEffect(() => {
-        if(productId){
-            dispatch(addToCart(productId,qty));
-        }
-    }, [dispatch,productId,qty]);
+    // React.useEffect(() => {
+    //     if(productId){
+    //         dispatch(addToCart(productId,qty));
+    //     }
+    // }, [dispatch,productId,qty]);
     const removeFromCartHandler = (id) => {
     dispatch(removeFromCart(id))
   }
 
   const checkoutHandler = () => {
-    history('/login?redirect=shipping')
+    // history('/login?redirect=shipping')
+    history('/shipping')
   }
     return (
         <Row>
@@ -88,7 +89,7 @@ const qty = Number(searchParms.get("qty"));
                 <ListGroup variant='flush'>
                   <ListGroup.Item>
                    <h2> SUBTOTAL ( {cartItems.reduce((a, c) => a + c.qty, 0)} ITEMS)</h2>
-                        <strong>₹{cartItems.reduce((acc,item)=>acc+item.price*item.qty,0)}</strong>
+                        <strong>₹{(cartItems.reduce((acc,item)=>acc+item.price*item.qty,0)).toFixed(2)}</strong>
                     </ListGroup.Item>
                     <ListGroup.Item>
                       <Button type='button' className='btn-block' disabled={cartItems.length===0} onClick={()=>checkoutHandler()}>Procced to Checkout</Button>

@@ -12,7 +12,10 @@ const PlaceOrder = () => {
     const navigation = useNavigate();
     const dispatch = useDispatch();
     const cart = useSelector(state => state.cart);
-
+    const { shippingAddress } = cart;
+    if(!shippingAddress){
+        navigation('/shipping');
+    }
     const addDecimals = (num) => {
         return (Math.round(num * 100) / 100).toFixed(2)
     }

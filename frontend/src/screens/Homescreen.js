@@ -17,9 +17,11 @@ const Homescreen = () => {
             try {
                 // Fetch initial products
                 dispatch(listProducts());
-                const {data} = await axios.get(`${process.env.REACT_APP_PROXY}/api/products?page=1`);
-                console.log(data);
-                setAllProducts(data.products);
+                // const {data} = await axios.get(`${process.env.REACT_APP_PROXY}/api/products?page=1`);
+                console.log("Products", products);
+                // console.log("Data", data.products);
+                setAllProducts(products);
+                // setAllProducts(data.products);
             } catch (error) {
                 // Handle errors here
                 console.error('Error fetching products:', error);
