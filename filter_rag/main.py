@@ -17,7 +17,8 @@ def filter_endpoint():
     data = request.get_json()
     query = data.get('query')
     top_k = 80
-    model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')   
+    # model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')   
+    model = SentenceTransformer('paraphrase-MiniLM-L3-v2')
 
     # 1. Search for similar products by embedding + cosine similarity
     matched_products, total_count = filter_products(query, model, top_k)
