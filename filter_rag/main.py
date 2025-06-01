@@ -6,7 +6,7 @@ from flask_cors import CORS
 from dotenv import load_dotenv
 
 load_dotenv()
-
+PORT = int(os.environ.get("FILTER_PORT", 5001))
 
 app = Flask(__name__)
 CORS(app, resources={r"/filter_rag": {"origins": ["http://localhost:5000", os.getenv("REACT_APP_PROXY")]}})
@@ -40,4 +40,4 @@ def filter_endpoint():
 
 
 if __name__ == "__main__":
-    app.run(port=5001, debug=True)
+    app.run(port=PORT, host="0.0.0.0")
