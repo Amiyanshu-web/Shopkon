@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify
-from productFilter import filter_products
-from productRag import rag_answer
+from .productFilter import filter_products
+from .productRag import rag_answer
 import os
 from flask_cors import CORS
 from dotenv import load_dotenv
