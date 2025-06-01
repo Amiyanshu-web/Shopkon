@@ -40,6 +40,10 @@ def filter_endpoint():
         'answer': rag_ans
     })
 
+@app.route('/health', methods=['GET'])
+def health_check():
+    return jsonify({'status': 'ok', 'message': 'Filter RAG service is running'}), 200
+
 
 if __name__ == "__main__":
     app.run(port=PORT, host="0.0.0.0")
