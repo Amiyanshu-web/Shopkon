@@ -25,7 +25,7 @@ export const getProducts = asyncHandler(async (req, res) => {
                 products,
                 page,
                 pages: Math.ceil(count / pageSize),
-                answer: 'No user query provided, returning paginated products.'
+                answer: ''
             });
         }
         const flaskResponse = await axios.post('http://127.0.0.1:5001/filter_rag', {

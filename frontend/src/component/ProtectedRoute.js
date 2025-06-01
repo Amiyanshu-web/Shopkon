@@ -4,7 +4,7 @@ import { Navigate, Outlet } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 // Example: get user authentication status from localStorage or context
-const isAuthenticated = () => {
+const IsAuthenticated = () => {
     // Replace with your actual authentication logic
     // return !!localStorage.getItem('userToken');
 
@@ -15,7 +15,7 @@ const isAuthenticated = () => {
 };
 
 const ProtectedRoute = ({ redirectPath = '/login' }) => {
-    return isAuthenticated() ? <Outlet /> : <Navigate to={redirectPath} replace />;
+    return IsAuthenticated() ? <Outlet /> : <Navigate to={redirectPath} replace />;
 };
 
 export default ProtectedRoute;

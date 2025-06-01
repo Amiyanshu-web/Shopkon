@@ -106,7 +106,7 @@ def clean_query_for_semantic_search(user_query, filters):
     
     # Remove category terms that were detected
     if 'product_type' in filters:
-        product_type_terms = ['mirrorless', 'dslr','camera', 'lens']
+        product_type_terms = ['mirrorless', 'dslr','camera', 'lens','product']
         price_terms.extend(product_type_terms)
     
     # Remove other filter terms
@@ -143,7 +143,9 @@ def is_camera_related_query(user_query):
         
         # Shopping intent for cameras
         'buy camera', 'camera for', 'best camera', 'camera under', 'camera price',
-        'camera review', 'camera comparison', 'recommend camera'
+        'camera review', 'camera comparison', 'recommend camera',
+
+        'product', 'item', 'show', 'find', 'get', 'all', 'available'
     ]
     
     query_lower = user_query.lower()
