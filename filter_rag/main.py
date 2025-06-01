@@ -9,7 +9,7 @@ load_dotenv()
 
 
 app = Flask(__name__)
-CORS(app, resources={r"/filter_rag": {"origins": ["http://localhost:5000", os.getenv("REACT_APP_PROXY", "http://localhost:3000")]}})
+CORS(app, resources={r"/filter_rag": {"origins": ["http://localhost:5000", os.getenv("REACT_APP_PROXY")]}})
 
 @app.route('/filter_rag', methods=['POST'])
 def filter_endpoint():
