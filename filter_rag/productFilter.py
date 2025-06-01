@@ -1,6 +1,6 @@
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
-from sentence_transformers import SentenceTransformer
+# from sentence_transformers import SentenceTransformer
 from pymongo import MongoClient
 import os
 import re
@@ -13,7 +13,7 @@ client = MongoClient(MONGO_CLIENT)
 db = client["shopkon"]
 collection = db["products"]
 
-model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
+# model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
 
 def extract_filters_from_query(user_query):
     filters = {}
@@ -198,7 +198,7 @@ def is_camera_related_query(user_query):
     return False  # Default to not camera-related
 
 
-def filter_products(user_query, top_k=80, similarity_threshold=0.5):
+def filter_products(user_query, model, top_k=80, similarity_threshold=0.5):
     """Enhanced product search with filtering and semantic similarity"""
     if not is_camera_related_query(user_query):
         return [], 0
