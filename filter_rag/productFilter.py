@@ -1,10 +1,11 @@
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
-# from sentence_transformers import SentenceTransformer
 from pymongo import MongoClient
 import os
 import re
 from dotenv import load_dotenv
+import cohere
+
 load_dotenv()
 
 MONGO_CLIENT = os.getenv("MONGO_CLIENT")
@@ -12,6 +13,8 @@ MONGO_CLIENT = os.getenv("MONGO_CLIENT")
 client = MongoClient(MONGO_CLIENT)
 db = client["shopkon"]
 collection = db["products"]
+
+co = cohere.Client(os.getenv("CO_API_KEY"))
 
 # model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
 
@@ -197,8 +200,21 @@ def is_camera_related_query(user_query):
     
     return False  # Default to not camera-related
 
-
-def filter_products(user_query, model, top_k=80, similarity_threshold=0.5):
+def get_cohere_embedding(text):
+    """Get embedding from Cohere API with error handling"""
+    try:
+        response = co.embed(
+            texts=[text],
+            model="embed-english-v3.0",  # Best model for English
+            input_type="search_query",   # Optimized for search queries
+            embedding_types=["float"]    # Ensure float type for compatibility
+        )
+        return np.array(response.embeddings[0])
+    except Exception as e:
+        print(f"Cohere embedding error: {e}")
+        return None
+    
+def filter_products(user_query, top_k=80, similarity_threshold=0.5):
     """Enhanced product search with filtering and semantic similarity"""
     if not is_camera_related_query(user_query):
         return [], 0
@@ -211,7 +227,9 @@ def filter_products(user_query, model, top_k=80, similarity_threshold=0.5):
         final_products = products[:top_k]
     
     else:
-        query_embedding = model.encode(user_query)
+        # query_embedding = model.encode(user_query)
+        query_embedding = get_cohere_embedding(user_query)
+
         products = list(collection.find({"embedding": {"$exists": True}}))
         
         scored = []
