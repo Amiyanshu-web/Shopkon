@@ -28,7 +28,7 @@ export const getProducts = asyncHandler(async (req, res) => {
                 answer: ''
             });
         }
-        const flaskResponse = await axios.post('http://127.0.0.1:5001/filter_rag', {
+        const flaskResponse = await axios.post('https://shopkon.onrender.com/filter_rag', {
             query: userQuery
         });
         const { status, products, totalCount, answer } = flaskResponse.data;
