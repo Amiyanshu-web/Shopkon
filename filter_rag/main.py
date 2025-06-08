@@ -2,8 +2,8 @@ from flask import Flask, request, jsonify
 # from .productFilter import filter_products
 # from .productRag import rag_answer
 # from .productQuery import filter_products_rag
-from productLLM import llm_answer
-from productQuery import filter_products_rag
+from .productLLM import llm_answer
+from .productQuery import filter_products_rag
 import os
 from flask_cors import CORS
 from dotenv import load_dotenv
