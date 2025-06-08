@@ -1,6 +1,9 @@
 from flask import Flask, request, jsonify
-from .productFilter import filter_products
-from .productRag import rag_answer
+# from .productFilter import filter_products
+# from .productRag import rag_answer
+# from .productQuery import filter_products_rag
+from productLLM import llm_answer
+from productQuery import filter_products_rag
 import os
 from flask_cors import CORS
 from dotenv import load_dotenv
@@ -19,7 +22,8 @@ def filter_endpoint():
     # model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')   
 
     # 1. Search for similar products by embedding + cosine similarity
-    matched_products, total_count = filter_products(query, top_k)
+    # matched_products, total_count = filter_products(query, top_k)
+    matched_products, total_count = filter_products_rag(query, top_k)
 
     if matched_products:
         # print(matched_products)
@@ -32,7 +36,7 @@ def filter_endpoint():
         })
 
     # 2. If no match found, generate RAG answer for the query
-    rag_ans = rag_answer(query)
+    rag_ans = llm_answer(query)
 
     return jsonify({
         'status': 'rag',
